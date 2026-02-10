@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+<title>AR sem marcador</title>
+
+<style>
+body { margin: 0; overflow: hidden; }
+#btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border-radius: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<button id="btn">Colocar modelo</button>
+
+<a-scene
+  webxr="optionalFeatures: hit-test;"
+  vr-mode-ui="enabled: false"
+  embedded>
+
+<a-assets>
+  <a-asset-item id="modelo" src="mode.obj"></a-asset-item>
+</a-assets>
+
+<a-entity id="objeto"
+  obj-model="obj: #modelo"
+  scale="0.3 0.3 0.3"
+  visible="false">
+</a-entity>
+
+<a-camera></a-camera>
+
+</a-scene>
+
+<script>
+const objeto = document.querySelector("#objeto");
+const botao = document.querySelector("#btn");
+
+botao.onclick = () => {
+  objeto.setAttribute("position", "0 -1 -2");
+  objeto.setAttribute("visible", true);
+};
+</script>
+
+</body>
+</html>
